@@ -1,6 +1,9 @@
 const express = require('express')
 const env = require('dotenv')
 
+// Route files
+const bootcamps = require('./routes/bootcamps.js')
+
 // Load env vars
 env.config({
   path: './config/config.env',
@@ -18,33 +21,8 @@ app.get('/', (req, res) => {
     )
 })
 
-app.get('/api/v1/bootcamps', (req, res) => {
-  res.status(200).json({
-    success: true,
-    msg: 'show all bootcamps',
-  })
-})
-
-app.post('/api/v1/bootcamps', (req, res) => {
-  res.status(200).json({
-    success: true,
-    msg: 'create all bootcamps',
-  })
-})
-
-app.put('/api/v1/bootcamps', (req, res) => {
-  res.status(200).json({
-    success: true,
-    msg: 'update all bootcamps',
-  })
-})
-
-app.delete('/api/v1/bootcamps', (req, res) => {
-  res.status(200).json({
-    success: true,
-    msg: 'delete all bootcamps',
-  })
-})
+// Mount Router
+app.use('/api/v1/bootcamps', bootcamps)
 
 // Middleware
 
