@@ -1,11 +1,12 @@
 const express = require('express')
 const env = require('dotenv')
 const morgan = require('morgan')
-const connectDB = require('./config/db.js')
+const connectDB = require('./config/db')
 const colors = require('colors')
+const errorHandler = require('./middlewares/error')
 
 // Route files
-const bootcamps = require('./routes/bootcamps.js')
+const bootcamps = require('./routes/bootcamps')
 
 // Load env vars
 env.config({
@@ -24,11 +25,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Middleware
+app.use(express.json())
 
 // Routes
 
 // Mount Router
 app.use('/api/v1/bootcamps', bootcamps)
+
+app.use(errorHandler)
 
 // Listener
 

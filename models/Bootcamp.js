@@ -12,7 +12,6 @@ const BootcampSchema = new mongoose.Schema({
   description: {
     type: String,
     required: [true, 'Please add a description'],
-    unique: true,
     maxLength: [500, 'Description can not be more than 50 characters'],
   },
   website: {
@@ -38,15 +37,14 @@ const BootcampSchema = new mongoose.Schema({
     required: [true, 'Please add an address'],
   },
   location: {
-    // GEOJSON Point
     type: {
       type: String,
       enum: ['Point'],
-      required: true,
+      // required: true,
     },
     coordinates: {
       type: [Number],
-      required: true,
+      // required: true,
       index: '2dsphere',
     },
     formattedAddress: String,
